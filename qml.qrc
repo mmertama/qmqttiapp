@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/Subscriptions.qml</file>
+        <file>qml/Messages.qml</file>
+    </qresource>
+</RCC>
