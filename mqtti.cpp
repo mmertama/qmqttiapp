@@ -60,12 +60,29 @@ QByteArray magic() { // strip off trailing zero
 }
 
 class Mqtti::Private {
+
+    class Busy {
+    public:
+        Busy(Mqtti::Private& priv) :  m_priv(priv) {
+            m_priv.m_busy = true;
+            m_priv.m_busyChaged();
+        }
+        ~Busy() {
+            m_priv.m_busy = false;
+            m_priv.m_busyChaged();
+        }
+    private:
+        Mqtti::Private& m_priv;
+    };
+
 public:
+
     using HistoryRecord = std::tuple<QString, QDateTime, QString, Direction>;
     using History = QHash<QUuid, HistoryRecord>;
     using HistoryList = QList<QUuid>;
     using Binary = QPair<QString, QByteArray>;
-    Private(Mqtti* mqtti) {
+
+    Private(Mqtti* mqtti)  : m_busyChaged([mqtti](){emit mqtti->busyChanged();}){
         // on error
         QObject::connect(&m_client, &QMqttClient::errorChanged, mqtti, [mqtti](const auto& err) {
             QString str;
@@ -191,8 +208,13 @@ public:
         return m_binaries.at(pos);
     }
 
+    bool busy() const {
+        return m_busy;
+    }
+
 private:
     bool connect() {
+        Busy busy(*this);
         const auto await = [&]() {
             QEventLoop loop;
             bool is_ok = true;
@@ -224,6 +246,8 @@ private:
     QVector<Binary> m_binaries;
     History m_historyData;
     HistoryList m_historyList;
+    bool m_busy = false;
+    std::function<void ()> m_busyChaged;
 };
 
 
@@ -439,4 +463,8 @@ int Mqtti::binaryCount() const {
 
 bool Mqtti::setServer(const QString& serverName) {
     return setServer(QUrl::fromUserInput(serverName));
+}
+
+bool Mqtti::busy() const {
+    return m_private->busy();
 }

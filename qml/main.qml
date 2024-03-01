@@ -102,6 +102,8 @@ Window {
 
     // handle mouse / touch clicks
     function clickEvent(element) {
+        if(Mqtti.busy)
+            return;
         switch(element) {
         case 'subscribe_view':
             FigmaQmlSingleton.setView(1);
@@ -158,5 +160,20 @@ Window {
     // initial read from settings and set
     Component.onCompleted: {
         Mqtti.server = settings.server;
+    }
+
+    Item {
+        visible: Mqtti.busy
+        anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            opacity: 0.3
+        }
+        Text {
+            anchors.centerIn: parent
+            text: qsTr("BUSY")
+            font.pixelSize: 20
+            font.bold: true
+        }
     }
 }

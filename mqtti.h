@@ -24,6 +24,7 @@ class Mqtti : public QObject {
     Q_OBJECT
     Q_PROPERTY(QStringList subscriptions READ subscriptions NOTIFY subscriptionsChanged FINAL)
     Q_PROPERTY(QUrl server READ server WRITE setServer NOTIFY serverChanged FINAL)
+    Q_PROPERTY(bool busy READ busy NOTIFY busyChanged FINAL)
 public:
     explicit Mqtti(QObject *parent = nullptr);
     ~Mqtti();
@@ -54,6 +55,7 @@ public:
     bool setServer(const QUrl& serverName);
     /// get list of current subscriptions
     QStringList subscriptions() const;
+    bool busy() const;
 signals:
     void topicChanged();
     void subscriptionsChanged();
@@ -63,6 +65,7 @@ signals:
     void messageReceived(const QString& tpc, const QString& msg);
     void rawReceived(const QString& tpc, const QByteArray& data);
     void binaryReceived(const QString& tpc, int index);
+    void busyChanged();
 private:
     bool handleRawMessage(const QString& topic, const QByteArray& message);
     bool handleMessage(unsigned& pos, const QString& topic, const QByteArray& message);
