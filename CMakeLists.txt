@@ -65,5 +65,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Quick Qt6::Network
     Mqtt
 )
 
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug" AND LINUX)
 add_subdirectory(test)
+endif()
 
