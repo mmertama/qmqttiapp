@@ -102,8 +102,6 @@ Window {
 
     // handle mouse / touch clicks
     function clickEvent(element) {
-        if(Mqtti.busy)
-            return;
         switch(element) {
         case 'subscribe_view':
             FigmaQmlSingleton.setView(1);
@@ -152,8 +150,14 @@ Window {
 
     Connections {
         target: Mqtti
+
         function onError(error_msg) {
             console.log("MQTTI:", error_msg)
+        }
+
+        function onBusyChanged() {
+            if(Mqtti.busy)
+                busyTimer.start();
         }
     }
 
@@ -163,7 +167,11 @@ Window {
     }
 
     Item {
-        visible: Mqtti.busy
+        Timer {
+            id: busyTimer
+            interval: 500
+        }
+        visible:  Mqtti.busy && !busyTimer.running
         anchors.fill: parent
         Rectangle {
             anchors.fill: parent
@@ -175,5 +183,6 @@ Window {
             font.pixelSize: 20
             font.bold: true
         }
+        MouseArea {anchors.fill: parent}
     }
 }
