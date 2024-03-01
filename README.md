@@ -4,8 +4,7 @@ Example for FigmaQML
 
 
 ## Figma
-The UI is completely composed from
-https://www.figma.com/file/e7IRRrQKk54Ui8Ss5DLDIU/QMQTTI?type=design&node-id=3%3A110&mode=design&t=3QmuhweRiG3hZGQw-1
+The UI is completely composed from [Figma desing](https://www.figma.com/file/e7IRRrQKk54Ui8Ss5DLDIU/QMQTTI?type=design&node-id=3%3A110&mode=design&t=3QmuhweRiG3hZGQw-1)
 using FigmaQML
 
 The initial UI is very ugly in purpose, but I hope it get improved over time by having improved UI design.
