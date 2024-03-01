@@ -158,13 +158,15 @@ public:
     bool setServer(const QUrl& serverName) {
         if(m_client.state() != QMqttClient::ClientState::Disconnected)
             return false; // only when disconnected!
-        const auto host = serverName.host();
-        if(host.isEmpty())
-            return false;
+        auto host = serverName.host();
+        if(host.isEmpty()) {
+            host = QUrl::fromUserInput(serverName.path()).host(); // hack to do 2nd attempt
+            if(host.isEmpty())
+                return false;
+        }
         m_client.setHostname(host);
         const auto port = (serverName.port() < 0 || serverName.port() > 65535)  ? DEFAULT_MQTT_PORT : serverName.port();
         m_client.setPort(port);
-        Q_ASSERT(server().host() == serverName.host());
         return true;
     }
 
@@ -219,8 +221,8 @@ private:
             QEventLoop loop;
             bool is_ok = true;
             QObject::connect(&m_client, &QMqttClient::connected, &loop, &QEventLoop::quit);
-            QObject::connect(&m_client, &QMqttClient::errorChanged, &loop, [&loop, &is_ok](auto err){
-                qDebug() << "Connection failed" << err;
+            QObject::connect(&m_client, &QMqttClient::errorChanged, &loop, [&loop, &is_ok, this](auto err){
+                qDebug() << "Connection to" << m_client.hostname() << ':' << m_client.port() << "failed" << err;
                 is_ok = false;
                 loop.quit();
             });
