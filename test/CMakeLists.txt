@@ -15,8 +15,16 @@ qt_add_executable(${PROJECT_NAME}
     )
 
 target_include_directories(${PROJECT_NAME} PRIVATE .. .)
+if(APPLE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        Qt6::Test
+        $<FILTER: $<TARGET_OBJECTS:qmottiapp>,EXCLUDE,main\.cpp\.o>
+        $<FILTER: $<TARGET_PROPERTY:qmottiapp,LINK_LIBRARIES>,EXCLUDE,Qt6::.*PermissionPlugin>
+        )
+else()
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Test
     $<FILTER: $<TARGET_OBJECTS:qmottiapp>,EXCLUDE,main\.cpp\.o>
     $<TARGET_PROPERTY:qmottiapp,LINK_LIBRARIES>
     )
+endif()
