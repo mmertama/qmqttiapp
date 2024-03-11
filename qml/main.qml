@@ -121,6 +121,18 @@ Window {
         }
     }
 
+    // handle mouse / touch clicks
+    function pressedEvent(element) {
+        FigmaQmlSingleton.applyValue(element + "_button", "#898989");
+
+    }
+
+    // handle mouse / touch clicks
+    function releasedEvent(element) {
+        FigmaQmlSingleton.applyValue(element + "_button", "#d9d9d9");
+
+    }
+
 
     Connections {
         target: FigmaQmlSingleton
@@ -130,6 +142,13 @@ Window {
             switch(event) {
             case 'click_event':
                 clickEvent(element);
+                break;
+            case 'pressed_event':
+                pressedEvent(element);
+                break;
+            case 'released_event':
+                releasedEvent(element);
+                break;
             }
         }
 
