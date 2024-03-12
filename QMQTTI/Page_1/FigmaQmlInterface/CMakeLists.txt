@@ -12,10 +12,10 @@ find_package(Qt6 REQUIRED COMPONENTS Core Quick)
 qt_standard_project_setup()
 qt_add_library(${PROJECT_NAME} STATIC)
 
-set(APP_QML_FILES "qml/Publish4_figma.qml"
-   "qml/Subscribe5_figma.qml"
-   "qml/Qml_server_address_onClick10_figma.qml"
-   "qml/Button12_figma.qml")
+set(APP_QML_FILES "qml/Qml_server_address_onClick2_figma.qml"
+   "qml/Button4_figma.qml"
+   "qml/Subscribe1_figma.qml"
+   "qml/Publish_figma.qml")
 set(APP_IMAGE_FILES)
 
 qt_add_qml_module(${PROJECT_NAME}

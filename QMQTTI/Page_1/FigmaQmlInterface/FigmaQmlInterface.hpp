@@ -161,7 +161,7 @@ private:
     /**
      * @brief elements, static and sole
      */
-    const std::vector<QString> m_elements {"qml/Publish4_figma.qml","qml/Subscribe5_figma.qml"};
+    const std::vector<QString> m_elements {"qml/Publish_figma.qml","qml/Subscribe1_figma.qml"};
     QString m_currentView;
 };
 

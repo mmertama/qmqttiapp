@@ -96,7 +96,7 @@ Rectangle {
                     }
                 }
         }
-        Button12_figma {
+        Button4_figma {
         // component (Instance) level: 0 qml?add_file.onClick 
             id: figma_3_47
             // # "qml?add_file.onClick"
@@ -157,7 +157,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
             }
         }
-        Button12_figma {
+        Button4_figma {
         // component (Instance) level: 0 qml?subscribe_view.onClick 
             id: figma_3_48
             // # "qml?subscribe_view.onClick"
@@ -227,7 +227,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
             }
         }
-        Button12_figma {
+        Button4_figma {
         // component (Instance) level: 0 qml?publish.onClick 
             id: figma_3_49
             // # "qml?publish.onClick"
@@ -287,7 +287,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
             }
         }
-        Button12_figma {
+        Button4_figma {
         // component (Instance) level: 0 qml?publish.onClick 
             id: figma_40_34
             // # "qml?publish.onClick"
@@ -375,7 +375,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
-        Qml_server_address_onClick10_figma {
+        Qml_server_address_onClick2_figma {
         // component (Instance) level: 0 qml?message.onClick 
             id: figma_3_100
             // # "qml?message.onClick"
@@ -449,7 +449,7 @@ Rectangle {
                     }
             }
         }
-        Qml_server_address_onClick10_figma {
+        Qml_server_address_onClick2_figma {
         // component (Instance) level: 0 qml?topic_publish.onClick 
             id: figma_28_27
             // # "qml?topic_publish.onClick"
