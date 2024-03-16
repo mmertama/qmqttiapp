@@ -35,7 +35,11 @@ public:
 signals:
    /// @brief emitted on applyValue
    /// @param element 
+<<<<<<< Updated upstream
    /// @param value
+=======
+   /// @param source 
+>>>>>>> Stashed changes
    void valueChanged(const QString& element, const QString& value);
    /// @brief emitted for asLoader source change 
    /// @param element 
@@ -161,7 +165,11 @@ private:
     /**
      * @brief elements, static and sole
      */
+<<<<<<< Updated upstream
     const std::vector<QString> m_elements {"qml/Publish_figma.qml","qml/Subscribe1_figma.qml"};
+=======
+    const std::vector<QString> m_elements {"qml/Publish4_figma.qml","qml/Subscribe5_figma.qml"};
+>>>>>>> Stashed changes
     QString m_currentView;
 };
 

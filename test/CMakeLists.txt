@@ -19,7 +19,7 @@ if(APPLE)
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt6::Test
         $<FILTER: $<TARGET_OBJECTS:qmottiapp>,EXCLUDE,main\.cpp\.o>
-        $<FILTER: $<TARGET_PROPERTY:qmottiapp,LINK_LIBRARIES>,EXCLUDE,Qt6::.*PermissionPlugin>
+        $<FILTER: $<TARGET_PROPERTY:qmottiapp,LINK_LIBRARIES>,EXCLUDE,Qt6::.*PermissionPlugin> # The Mac needs to be exculuded, when inherit libs
         )
 else()
 target_link_libraries(${PROJECT_NAME} PRIVATE
